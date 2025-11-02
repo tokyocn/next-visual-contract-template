@@ -1,0 +1,33 @@
+{
+  "name": "next-visual-contract-template",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots",
+    "figma:export": "tsx tools/figma-export/export.ts",
+    "patch:apply": "tsx packages/codemods/applyPatchPlan.ts tools/patch-plans/sample.json"
+  },
+  "dependencies": {
+    "next": "14.2.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.2",
+    "@types/node": "^20.11.17",
+    "@types/react": "^18.2.66",
+    "autoprefixer": "^10.4.19",
+    "pixelmatch": "^5.3.0",
+    "pngjs": "^7.0.0",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.10",
+    "ts-morph": "^22.0.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.0",
+    "typescript": "^5.4.5"
+  }
+}

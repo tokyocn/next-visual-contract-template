@@ -1,0 +1,19 @@
+{
+  "file": "app/page.tsx",
+  "edits": [
+    {
+      "type": "replaceTailwind",
+      "selector": "[data-test=hero]",
+      "from": "px-8",
+      "to": "px-10",
+      "reason": "Increase horizontal padding by 8px"
+    },
+    {
+      "type": "updateProp",
+      "component": "Heading",
+      "prop": "size",
+      "to": "2xl",
+      "reason": "Match design heading size"
+    }
+  ]
+}

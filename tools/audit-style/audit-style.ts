@@ -1,9 +1,15 @@
 import fs from 'node:fs';
+import path from 'node:path';
 
 type Rule = { selector: string; expect: Record<string, string|number> };
 type Contract = { rules: Rule[] };
 
 export async function runAudit(page: import('@playwright/test').Page, contractPath: string, outPath: string) {
+  const abs = path.resolve(process.cwd(), contractPath);
+  if (!fs.existsSync(abs)) {
+    // 让调用方决定是否跳过，这里抛出一个更明确的错误信息
+    throw new Error(`[audit] Contract file not found: ${abs}`);
+  }
   const contract: Contract = JSON.parse(fs.readFileSync(contractPath, 'utf-8'));
   const results = await page.evaluate((rules: Rule[]) => {
     const out: any[] = [];

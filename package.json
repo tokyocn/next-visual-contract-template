@@ -9,6 +9,8 @@
     "test:visual": "playwright test",
     "test:visual:update": "playwright test --update-snapshots",
     "figma:export": "tsx tools/figma-export/export.ts",
+    "figma:contract": "tsx tools/figma-export/generateContract.ts",
+    "agent:auto": "tsx tools/agent/autoBuild.ts",
     "patch:apply": "tsx packages/codemods/applyPatchPlan.ts tools/patch-plans/sample.json"
   },
   "dependencies": {
@@ -19,6 +21,8 @@
   "devDependencies": {
     "@playwright/test": "^1.47.2",
     "@types/node": "^20.11.17",
+    "@types/pixelmatch": "^5.2.6",
+    "@types/pngjs": "^6.0.5",
     "@types/react": "^18.2.66",
     "autoprefixer": "^10.4.19",
     "pixelmatch": "^5.3.0",

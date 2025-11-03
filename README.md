@@ -103,4 +103,32 @@ npm run patch:apply
 
 ---
 
+## 9) AI Agent 闭环（Figma → 代码 → 视觉校验）
+
+新脚本 `npm run agent:auto` 会自动执行以下流程：
+1. （可选）通过 `tools/figma-export/export.ts` 下载指定 Frame 的基线图片与切图；
+2. 调用 Figma API 读取节点 JSON，生成层级摘要；
+3. 把摘要 + 现有测试约束（data-test、样式契约等）发送给 OpenAI Responses API，请求生成 `app/page.tsx`；
+4. 写入代码后立即运行 `npx playwright test`，并解析像素差与样式审计报告；
+5. 如果失败，会把差异摘要回传给模型请求下一轮修改（默认最多 3 轮，可调）。
+
+运行前请设置：
+
+```bash
+export FIGMA_TOKEN=xxxx             # Figma Personal Access Token
+export FIGMA_FILE_KEY=vGbYuNxWrlofyBnqlYuRC6
+export FRAME_NODE_ID=1:2
+export OPENAI_API_KEY=sk-xxxxx      # 任意可用的 OpenAI Responses API Key
+```
+
+执行示例：
+```bash
+npm run agent:auto -- --max-iterations 4
+# 或者显式传入文件/节点：
+npm run agent:auto -- --file vGbYuNxWrlofyBnqlYuRC6 --node 1:2
+```
+
+> 默认每轮会覆盖 `app/page.tsx`，请在 Git 工作树中查看差异并决定是否保留。  
+> 若已有下载的切图，可加 `SKIP_FIGMA_DOWNLOAD=1` 跳过下载步骤。
+
 Happy auto-fix & verify!

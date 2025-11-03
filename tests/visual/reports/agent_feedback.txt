@@ -1,0 +1,20 @@
+迭代标识: 手动测试
+测试结果: 未通过 ❌
+像素差: 8.43% (阈值 1.00%)
+实际截图: tests/visual/actual/frame-hero.png
+差异截图: tests/visual/diff/frame-hero.diff.png
+基线截图: tests/visual/baseline/frame-hero.png
+
+需调整的组件:
+- div.pic -> Expected width = 501px, got 469px
+- div.footer-divider -> Expected height = 0px, got 1px
+
+错误摘要:
+- Pixel diff 0.0843 > 0.01, see tests/visual/diff/frame-hero.diff.png
+- Style violations: 2 (see reports/style_violations.json)
+
+下一步建议:
+- 查看差异截图，定位布局或配色差异。
+- 根据上方 selector 调整样式，满足设计契约。
+- 阅读错误摘要，判断是否需要更新快照或补充资源。
+- 修复后再次运行 `npm run test:visual:update` 并更新此报告。

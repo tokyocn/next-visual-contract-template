@@ -1,3 +1,36 @@
 {
-  "violations": []
+  "violations": [
+    {
+      "selector": "[data-test='pic']",
+      "ruleId": "pic",
+      "description": "div.pic",
+      "elementIndex": 0,
+      "issues": [
+        {
+          "type": "style",
+          "property": "width",
+          "expected": "501px",
+          "actual": "469px",
+          "message": "Expected width = 501px, got 469px"
+        }
+      ],
+      "outerHTML": "<div data-test=\"pic\" style=\"width:501px;height:707px;position:relative;border-radius:0px;box-shadow:none;margin-top:9px\"><img alt=\"Team collaborating illustration\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" style=\"position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;object-fit:cover;color:transparent\" sizes=\"501px\" srcset=\"/_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=16&amp;q=75 16w, /_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=32&amp;q=75 32w, /_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=48&amp;q=75 48w, /_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=64&amp;q=75 64w, /_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=96&amp;q=75 96w, /_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=128&amp;q=75 128w, /_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=256&amp;q=75 256w, /_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=384&amp;q=75 384w, /_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=640&amp;q=75 640w, /_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=750&amp;q=75 750w, /_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=828&amp;q=75 828w, /_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=1080&amp;q=75 1080w, /_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=1200&amp;q=75 1200w, /_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=1920&amp;q=75 1920w, /_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=2048&amp;q=75 2048w, /_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=3840&amp;q=75 3840w\" src=\"/_next/image?url=%2Fimages%2Fhero-visual.png&amp;w=3840&amp;q=75\"></div>"
+    },
+    {
+      "selector": "[data-test='footer-divider']",
+      "ruleId": "footer-divider",
+      "description": "div.footer-divider",
+      "elementIndex": 0,
+      "issues": [
+        {
+          "type": "style",
+          "property": "height",
+          "expected": "0px",
+          "actual": "1px",
+          "message": "Expected height = 0px, got 1px"
+        }
+      ],
+      "outerHTML": "<div data-test=\"footer-divider\" style=\"width:1192px;height:0px;border-top:1px solid rgba(255,255,255,0.1);margin-top:48px;margin-bottom:32px\"></div>"
+    }
+  ]
 }

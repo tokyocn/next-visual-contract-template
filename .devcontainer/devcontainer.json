@@ -1,0 +1,20 @@
+{
+  "name": "Example Dev",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "postCreateCommand": "bash .devcontainer/init-db.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "redhat.java@1.32.0",
+        "vscjava.vscode-java-debug@0.58.0",
+        "vscjava.vscode-maven@0.44.0",
+        "vscjava.vscode-java-dependency@0.24.0"
+      ],
+      "settings": {
+        "java.jdt.ls.java.home": "/opt/java17"
+      }
+    }
+  }
+}

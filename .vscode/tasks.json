@@ -1,0 +1,66 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Deploy: Build & Deploy (Debug)",
+      "type": "shell",
+      "command": "pkill -9 -f '[A]SMain' 2>/dev/null; sleep 1; setsid /opt/glassfish3/bin/asadmin start-domain --debug & for i in $(seq 1 30); do (echo >/dev/tcp/localhost/9009) 2>/dev/null && break; sleep 1; done && mvn clean install -DskipTests && /opt/glassfish3/bin/asadmin deploy --force /workspace/web/target/example-0.0.1.war",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "options": {
+        "cwd": "/workspace"
+      },
+      "problemMatcher": [],
+      "detail": "停止→Debug启动 GlassFish + 编译打包 + 部署"
+    },
+    {
+      "label": "Deploy: Build & Deploy",
+      "type": "shell",
+      "command": "pkill -9 -f '[A]SMain' 2>/dev/null; sleep 1; setsid /opt/glassfish3/bin/asadmin start-domain & for i in $(seq 1 30); do (echo >/dev/tcp/localhost/8080) 2>/dev/null && break; sleep 1; done && mvn clean install -DskipTests && /opt/glassfish3/bin/asadmin deploy --force /workspace/web/target/example-0.0.1.war",
+      "group": "build",
+      "options": {
+        "cwd": "/workspace"
+      },
+      "problemMatcher": [],
+      "detail": "停止→启动 GlassFish + 编译打包 + 部署"
+    },
+    {
+      "label": "GlassFish: Stop",
+      "type": "shell",
+      "command": "pkill -9 -f '[A]SMain' 2>/dev/null; echo 'GlassFish stopped.'",
+      "problemMatcher": [],
+      "detail": "停止 GlassFish（强制）"
+    },
+    {
+      "label": "GlassFish: View Log",
+      "type": "shell",
+      "command": "tail -200f /opt/glassfish3/glassfish/domains/domain1/logs/server.log",
+      "problemMatcher": [],
+      "isBackground": true,
+      "detail": "实时查看 GlassFish 服务器日志"
+    },
+    {
+      "label": "Setup: Init Database",
+      "type": "shell",
+      "command": "bash /workspace/.devcontainer/init-db.sh",
+      "problemMatcher": [],
+      "detail": "初始化 PostgreSQL 数据库（首次使用）"
+    },
+    {
+      "label": "Setup: Configure JDBC Pool",
+      "type": "shell",
+      "command": "cp ~/.m2/repository/org/postgresql/postgresql/9.4.1212.jre7/postgresql-9.4.1212.jre7.jar /opt/glassfish3/glassfish/lib/ && /opt/glassfish3/bin/asadmin restart-domain && /opt/glassfish3/bin/asadmin create-jdbc-connection-pool --datasourceclassname org.postgresql.ds.PGSimpleDataSource --restype javax.sql.DataSource --property portNumber=5432:password=123456:user=postgres:serverName=db:databaseName=example_dev examplePool && /opt/glassfish3/bin/asadmin create-jdbc-resource --connectionpoolid examplePool jdbc/example && /opt/glassfish3/bin/asadmin ping-connection-pool examplePool",
+      "problemMatcher": [],
+      "detail": "配置 JDBC 连接池（首次使用）"
+    },
+    {
+      "label": "Test: Verify API",
+      "type": "shell",
+      "command": "echo '=== GET /work-type/v1 ===' && curl -s http://localhost:8080/example-0.0.1/api/work-type/v1 && echo '' && echo '=== Done ==='",
+      "problemMatcher": [],
+      "detail": "调用 work-type API 验证部署"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Debug: Attach to GlassFish",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 9009,
+      "projectName": "example-web",
+      "sourcePaths": [
+        "/workspace/web/src/main/java",
+        "/workspace/application/src/main/java",
+        "/workspace/domain/src/main/java",
+        "/workspace/infrastructure/src/main/java",
+        "/workspace/logging/src/main/java"
+      ],
+      "preLaunchTask": "Deploy: Build & Deploy (Debug)"
+    }
+  ]
+}

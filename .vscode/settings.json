@@ -1,0 +1,28 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+
+    // Language Server 使用 JDK 17 运行（Language Server 自身的运行环境）
+    "java.jdt.ls.java.home": "/opt/java17",
+
+    // 项目编译使用 JDK 7（源码兼容性）
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-1.7",
+            "path": "/opt/java7",
+            "default": true
+        },
+        {
+            "name": "JavaSE-17",
+            "path": "/opt/java17"
+        }
+    ],
+
+    // Maven 使用 JDK 7
+    "java.configuration.maven.userSettings": "",
+    "maven.terminal.customEnv": [
+        {
+            "environmentVariable": "JAVA_HOME",
+            "value": "/opt/java7"
+        }
+    ]
+}

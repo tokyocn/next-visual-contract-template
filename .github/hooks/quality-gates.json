@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "echo '{\"continue\": true, \"hookSpecificOutput\": {\"hookEventName\": \"SessionStart\", \"additionalContext\": \"Library DDD Project. Bounded contexts: catalog, membership, borrowing, reservation. Always check docs/implementation-plan.md for invariants. Use Module APIs for cross-context access. OpenAPI spec at docs/api/openapi.yaml is the API source of truth. Run ./gradlew test before creating PR.\"}}'",
+        "timeoutSec": 5
+      }
+    ],
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": ".github/hooks/scripts/pre-tool-use-guard.sh",
+        "timeoutSec": 10
+      }
+    ],
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": ".github/hooks/scripts/post-tool-use-reminder.sh",
+        "timeoutSec": 10
+      }
+    ]
+  }
+}
